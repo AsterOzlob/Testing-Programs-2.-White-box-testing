@@ -43,7 +43,7 @@
         </div>
     </form>
 
-    @if (Model.TestResults.Any())
+    @if (Model.TestResults != null && Model.TestResults.Any())
     {
         <div class="card">
             <div class="card-header">
