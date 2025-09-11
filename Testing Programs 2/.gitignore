@@ -1,0 +1,224 @@
+# Rider IDE
+.idea/
+*.sln.iml
+*.csproj.iml
+*.dotSettings
+*.dotSettings.user
+*.rider
+.rider/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+_ReSharper.*
+*.ReSharper.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/wwwroot/lib/
+**/wwwroot/dist/
+
+# NuGet packages
+*.nupkg
+.nuget/
+nuget.exe
+packages/
+
+# MSTest test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit*.xml
+
+# Coverage reports
+coverage/
+*.coverage
+*.coveragexml
+coverage*.xml
+*.coverage.js
+
+# ASP.NET Core
+appsettings.*.json
+appsettings.Development.json
+appsettings.Production.json
+
+# Web specific
+wwwroot/js/*.min.js
+wwwroot/css/*.min.css
+*.min.js
+*.min.css
+*.bundle.js
+*.bundle.css
+
+# Node.js and npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.yarn/
+.yarnrc.yml
+.pnp.js
+.npm/
+
+# TypeScript
+*.tsbuildinfo
+dist/
+build/
+
+# Webpack
+webpack.config.js
+webpack.prod.js
+webpack.dev.js
+
+# Babel
+.babelrc
+
+# ESLint
+.eslintcache
+.eslintrc.js
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Vue.js
+dist/
+
+# Angular
+dist/
+aot/
+
+# React
+build/
+.cache/
+
+# Bower
+bower_components/
+
+# Grunt
+.grunt/
+
+# Gulp
+.gulp/
+
+# Sass/SCSS
+.sass-cache/
+.scss-cache/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+[Tt]humbs.db
+
+# Backup files
+*.bak
+*.tmp
+*.temp
+*.backup
+*.gho
+
+# Logs
+*.log
+logs/
+
+# Local history for Rider
+history/
+
+# Performance logs
+*.perflog
+
+# Output files
+out/
+dist/
+
+# Temp files
+temp/
+tmp/
+
+# User-specific files
+*.userprefs
+
+# Database files
+*.mdf
+*.ldf
+*.sdf
+
+# Microsoft Entity Framework Core Migrations
+Migrations/
+
+# PowerShell
+*.ps1xml
+
+# Python (если используется)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Docker
+.docker/
+
+# Kubernetes
+.kube/
+
+# IDE - VSCode
+.vscode/
+
+# JetBrains IDEs
+*.iws
+
+# MacOS
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of .gitignore
