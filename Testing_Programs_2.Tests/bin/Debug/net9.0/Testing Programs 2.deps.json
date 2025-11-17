@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Testing Programs 2/1.0.0": {
+        "runtime": {
+          "Testing Programs 2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Testing Programs 2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

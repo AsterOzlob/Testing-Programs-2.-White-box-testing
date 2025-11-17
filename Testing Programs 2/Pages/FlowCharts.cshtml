@@ -1,0 +1,224 @@
+@page
+@model Testing_Programs_2.Pages.FlowChartsModel
+@{
+    ViewData["Title"] = "Блок-схемы и управляющий граф";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Блок-схемы алгоритмов и управляющий граф</h1>
+        <a href="/" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Назад к тестированию
+        </a>
+    </div>
+
+    <!-- Навигация по секциям -->
+    <ul class="nav nav-tabs mb-4" id="flowchartTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="reference-tab" data-bs-toggle="tab" data-bs-target="#reference" type="button" role="tab">
+                Эталонная функция
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="faulty-tab" data-bs-toggle="tab" data-bs-target="#faulty" type="button" role="tab">
+                Фактическая функция
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="control-graph-tab" data-bs-toggle="tab" data-bs-target="#control-graph" type="button" role="tab">
+                Управляющий граф
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="flowchartTabsContent">
+        <!-- Вкладка эталонной функции -->
+        <div class="tab-pane fade show active" id="reference" role="tabpanel">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Блок-схема эталонной функции</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="~/images/reference-function-detailed.png" alt="Блок-схема эталонной функции" 
+                             class="img-fluid border rounded" style="max-height: 500px;">
+                    </div>
+                    <div class="mt-3">
+                        <h6>Описание алгоритма:</h6>
+                        <p>Эталонная функция реализует корректную логику вычислений согласно математическому описанию. Все формулы и проверки соответствуют требованиям.</p>
+                        
+                        <h6>Ключевые особенности:</h6>
+                        <ul>
+                            <li>Кубическая функция: <code>a*x³ + b*x²</code></li>
+                            <li>Рациональная функция: <code>(x - a)/(x - c)</code></li>
+                            <li>Функция по умолчанию: <code>(x + 5)/(c*(x - 10))</code></li>
+                            <li>Проверка деления на ноль: <code>x == c</code> и <code>x == 10 OR c == 0</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка ошибочной функции -->
+        <div class="tab-pane fade" id="faulty" role="tabpanel">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Блок-схема фактической функции (с ошибками)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="~/images/faulty-function-detailed.png" alt="Блок-схема ошибочной функции" 
+                             class="img-fluid border rounded" style="max-height: 500px;">
+                    </div>
+                    <div class="mt-3">
+                        <h6>Обнаруженные ошибки:</h6>
+                        <div class="alert alert-warning">
+                            <ul class="mb-0">
+                                <li><strong>Ошибка 1:</strong> В кубической функции используется <code>a*x² + b*x²</code> вместо <code>a*x³ + b*x²</code></li>
+                                <li><strong>Ошибка 2:</strong> В рациональной функции перепутаны числитель и знаменатель: <code>(x - c)/(x - a)</code></li>
+                                <li><strong>Ошибка 3:</strong> В функции по умолчанию используется 6 вместо 5: <code>(x + 6)/(c*(x - 10))</code></li>
+                                <li><strong>Ошибка 4:</strong> Изменена логика проверки деления на ноль в рациональной функции</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка управляющего графа -->
+        <div class="tab-pane fade" id="control-graph" role="tabpanel">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Управляющий потоковый граф программы</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="~/images/control-flow-graph.png" alt="Управляющий потоковый граф" 
+                             class="img-fluid border rounded" style="max-height: 500px;">
+                    </div>
+                    
+                    <!-- Легенда управляющего графа -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Легенда управляющего графа</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 30px; height: 30px;">1</div>
+                                        <span>Начало выполнения функции</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-warning text-dark rounded me-2 px-2 py-1">Условие</div>
+                                        <span>Предикатный узел (проверка условия)</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-success text-white rounded me-2 px-2 py-1">Процесс</div>
+                                        <span>Вычислительный блок (расчет значения)</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-info text-white rounded me-2 px-2 py-1">Конец</div>
+                                        <span>Конец выполнения функции</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="border-top border-primary me-2" style="width: 40px;"></div>
+                                        <span>Поток управления (ребро графа)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Анализ цикломатической сложности</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Формула:</strong> V(G) = p + 1</p>
+                                    <p><strong>Где:</strong> p = количество предикатных узлов</p>
+                                    
+                                    <h6>Предикатные узлы:</h6>
+                                    <ol>
+                                        <li><code>if (x < 0 && b != 0)</code></li>
+                                        <li><code>if (x > 0 && b == 0)</code></li>
+                                        <li><code>if (x - c == 0)</code></li>
+                                        <li><code>if (c == 0 || x - 10 == 0)</code></li>
+                                    </ol>
+                                    
+                                    <p><strong>Расчет:</strong> V(G) = 4 + 1 = <strong>5</strong></p>
+                                    <p><strong>Вывод:</strong> Требуется 5 тестов для полного покрытия базовых путей</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Базовые пути -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h6 class="mb-0">Базовые пути программы</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Путь</th>
+                                            <th>Условия выполнения</th>
+                                            <th>Результат</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Путь 1</strong></td>
+                                            <td>x < 0 && b ≠ 0</td>
+                                            <td class="text-success">Кубическая функция</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Путь 2</strong></td>
+                                            <td>x > 0 && b = 0 && x ≠ c</td>
+                                            <td class="text-success">Рациональная функция</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Путь 3</strong></td>
+                                            <td>x > 0 && b = 0 && x = c</td>
+                                            <td class="text-warning">Деление на ноль (NaN)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Путь 4</strong></td>
+                                            <td>Остальные случаи && c ≠ 0 && x ≠ 10</td>
+                                            <td class="text-success">Функция по умолчанию</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Путь 5</strong></td>
+                                            <td>Остальные случаи && (c = 0 || x = 10)</td>
+                                            <td class="text-warning">Деление на ноль (NaN)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .nav-tabs .nav-link {
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link.active {
+            font-weight: 600;
+        }
+        
+        .card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border: 1px solid rgba(0, 0, 0, 0.125);
+        }
+    </style>
+}
