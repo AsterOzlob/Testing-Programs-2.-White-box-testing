@@ -15,7 +15,13 @@ public class IndexModel : PageModel
     }
 
     [BindProperty]
-    public TestingMethod SelectedMethod { get; set; } = TestingMethod.StatementCoverage;
+    public string TestType { get; set; } = "Random";
+
+    [BindProperty]
+    public int NumberOfTests { get; set; } = 10;
+
+    [BindProperty]
+    public int TestsPerCategory { get; set; } = 5;
 
     public List<TestResult> TestResults { get; set; }
 
@@ -25,16 +31,21 @@ public class IndexModel : PageModel
 
     public IActionResult OnPost()
     {
-        TestResults = SelectedMethod switch
+        if (TestType == "Random")
         {
-            TestingMethod.StatementCoverage => _testingService.TestStatementCoverage(),
-            TestingMethod.DecisionCoverage => _testingService.TestDecisionCoverage(),
-            TestingMethod.ConditionCoverage => _testingService.TestConditionCoverage(),
-            TestingMethod.DecisionConditionCoverage => _testingService.TestDecisionConditionCoverage(),
-            TestingMethod.CombinatorialConditionCoverage => _testingService.TestCombinatorialConditionCoverage(),
-            _ => _testingService.TestStatementCoverage()
-        };
+            TestResults = _testingService.RunRandomTests(NumberOfTests);
+        }
+        else if (TestType == "Targeted")
+        {
+            TestResults = _testingService.RunTargetedTests(TestsPerCategory);
+        }
 
+        return Page();
+    }
+
+    public IActionResult OnPostRunXUnitTests()
+    {
+        TestResults = _testingService.RunXUnitTests();
         return Page();
     }
 }

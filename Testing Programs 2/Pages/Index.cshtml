@@ -1,44 +1,141 @@
 ﻿@page
-@using Testing_Programs_2.Models
-@model IndexModel
+@model Testing_Programs_2.Pages.IndexModel
 @{
-    ViewData["Title"] = "Тестирование белого ящика";
+    ViewData["Title"] = "Сравнительное тестирование функций";
 }
 
 <div class="container mt-4">
-    <h1>Тестирование функции методами белого ящика</h1>
+    <h1>Сравнительное тестирование функций</h1>
     
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5>Функция для тестирования:</h5>
-        </div>
-        <div class="card-body">
-            <p class="mb-1">y = 
-                <span class="text-primary">a*x³ + b*x²</span>, при x < 0, b ≠ 0
-            </p>
-            <p class="mb-1">y = 
-                <span class="text-success">(x - a)/(x - c)</span>, при x > 0 и b = 0
-            </p>
-            <p class="mb-0">y = 
-                <span class="text-danger">(x + 5)/(c*(x - 10))</span>, в остальных случаях
-            </p>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Функции для тестирования:</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-success">Эталонная функция (без ошибок):</h6>
+                            <p class="mb-1">y = a*x³ + b*x², при x < 0, b ≠ 0</p>
+                            <p class="mb-1">y = (x - a)/(x - c), при x > 0 и b = 0</p>
+                            <p class="mb-0">y = (x + 5)/(c*(x - 10)), в остальных случаях</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-danger">Фактическая функция (с ошибками):</h6>
+                            <p class="mb-1">y = a*x² + b*x², при x < 0, b ≠ 0</p>
+                            <p class="mb-1">y = (x - c)/(x - a), при x > 0 и b = 0</p>
+                            <p class="mb-0">y = (x + 6)/(c*(x - 10)), в остальных случаях</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+@*
+    <!-- Секция с детализированными блок-схемами -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Детализированные блок-схемы алгоритмов с проверками ошибок</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-success text-center">Эталонная функция</h6>
+                <div class="text-center">
+                    <img src="~/images/reference-function-detailed.png" alt="Блок-схема эталонной функции с проверками" 
+                         class="img-fluid border rounded" style="max-height: 400px;">
+                </div>
+                <div class="mt-2 text-center">
+                    <small class="text-muted">Алгоритм с обработкой особых случаев</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-danger text-center">Фактическая функция (с ошибками)</h6>
+                <div class="text-center">
+                    <img src="~/images/faulty-function-detailed.png" alt="Блок-схема ошибочной функции с проверками" 
+                         class="img-fluid border rounded" style="max-height: 400px;">
+                </div>
+                <div class="mt-2 text-center">
+                    <small class="text-muted">Алгоритм с преднамеренными ошибками и разной логикой проверок</small>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Сравнение проверок ошибок -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <h6>Ключевые различия в проверках ошибок:</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Рациональная функция (x > 0, b = 0):</strong>
+                            <ul class="mb-2">
+                                <li><span class="text-success">Эталон: проверка x == c (деление на 0)</span></li>
+                                <li><span class="text-danger">Факт: проверка x == a (деление на 0)</span></li>
+                                <li><small class="text-muted">Из-за ошибки в формуле изменилась логика проверки!</small></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Функция по умолчанию:</strong>
+                            <ul class="mb-0">
+                                <li><span class="text-success">Эталон: проверка x == 10 OR c == 0</span></li>
+                                <li><span class="text-danger">Факт: проверка x == 10 OR c == 0</span></li>
+                                <li><small class="text-muted">Проверки одинаковые, но формула отличается</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+*@
 
     <form method="post">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label class="form-label">Выберите метод тестирования:</label>
-                <select asp-for="SelectedMethod" class="form-select">
-                    <option value="@TestingMethod.StatementCoverage">Покрытие операторов</option>
-                    <option value="@TestingMethod.DecisionCoverage">Покрытие решений</option>
-                    <option value="@TestingMethod.ConditionCoverage">Покрытие условий</option>
-                    <option value="@TestingMethod.DecisionConditionCoverage">Покрытие решений/условий</option>
-                    <option value="@TestingMethod.CombinatorialConditionCoverage">Комбинаторное покрытие условий</option>
-                </select>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Параметры тестирования</h5>
             </div>
-            <div class="col-md-6 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary">Запустить тестирование</button>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Тип тестирования:</label>
+                        <select asp-for="TestType" class="form-select" id="testTypeSelect">
+                            <option value="Random">Случайные тесты</option>
+                            <option value="Targeted">Целевые тесты по категориям</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6" id="randomTestsSection">
+                        <label class="form-label">Количество случайных тестов:</label>
+                        <input asp-for="NumberOfTests" type="number" class="form-control" min="1" max="100" value="10">
+                        <small class="form-text text-muted">Генерирует полностью случайные тестовые данные</small>
+                    </div>
+                    
+                    <div class="col-md-6" id="targetedTestsSection" style="display: none;">
+                        <label class="form-label">Тестов на категорию:</label>
+                        <input asp-for="TestsPerCategory" type="number" class="form-control" min="1" max="20" value="5">
+                        <small class="form-text text-muted">Генерирует тесты для каждой ветки функции</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-between">
+                <div>
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bi bi-play-circle"></i> Запустить сравнительное тестирование
+                    </button>
+                    <a href="/" class="btn btn-outline-secondary">Сброс</a>
+                </div>
+                <a href="/XUnitTests" class="btn btn-success">
+                    <i class="bi bi-gear"></i> Автоматическое тестирование (xUnit)
+                </a>
             </div>
         </div>
     </form>
@@ -46,17 +143,19 @@
     @if (Model.TestResults != null && Model.TestResults.Any())
     {
         <div class="card">
-            <div class="card-header">
-                <h5>Результаты тестирования (@Model.SelectedMethod)</h5>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5>Результаты сравнительного тестирования</h5>
+                <span class="badge bg-primary">@Model.TestResults.Count тестов</span>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
+                                <th>Метод тестирования</th>
                                 <th>Тестовые данные (A, B, C, X)</th>
-                                <th>Путь</th>
-                                <th>Ожидаемый результат</th>
+                                <th>Путь (Эталонный)</th>
+                                <th>Эталонный результат</th>
                                 <th>Фактический результат</th>
                                 <th>Результат тестирования</th>
                             </tr>
@@ -65,14 +164,19 @@
                             @foreach (var result in Model.TestResults)
                             {
                                 <tr>
-                                    <td>@result.Input.A, @result.Input.B, @result.Input.C, @result.Input.X</td>
+                                    <td>@result.TestMethod</td>
+                                    <td>@result.Input.A.ToString("F2"), @result.Input.B.ToString("F2"), @result.Input.C.ToString("F2"), @result.Input.X.ToString("F2")</td>
                                     <td>@result.Path</td>
-                                    <td>@result.ExpectedResult.ToString("F4")</td>
-                                    <td>@result.ActualResult.ToString("F4")</td>
+                                    <td>@FormatResult(result.ExpectedResult)</td>
+                                    <td>@FormatResult(result.ActualResult)</td>
                                     <td>
                                         <span class="badge @(result.IsSuccessful ? "bg-success" : "bg-danger")">
-                                            @(result.IsSuccessful ? "Успешно" : "Неуспешно")
+                                            @(result.IsSuccessful ? "УСПЕХ" : "НЕУДАЧА")
                                         </span>
+                                        <br/>
+                                        <small class="text-muted">
+                                            @(result.IsSuccessful ? "Ошибка выявлена" : "Ошибка не выявлена")
+                                        </small>
                                     </td>
                                 </tr>
                             }
@@ -84,14 +188,59 @@
                     @{
                         var successfulCount = Model.TestResults.Count(r => r.IsSuccessful);
                         var totalCount = Model.TestResults.Count;
-                        var successRate = (double)successfulCount / totalCount * 100;
+                        var successRate = totalCount > 0 ? (double)successfulCount / totalCount * 100 : 0;
                     }
                     <p class="mb-0">
-                        <strong>Статистика:</strong> @successfulCount из @totalCount тестов пройдены успешно 
+                        <strong>Статистика:</strong> 
+                        <span class="text-success">@successfulCount</span> из @totalCount тестов выявили ошибки
                         (@successRate.ToString("F1")%)
                     </p>
+                    <div class="progress mt-2" style="height: 20px;">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                             style="width: @successRate%" 
+                             aria-valuenow="@successRate" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                            @successRate.ToString("F1")%
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('testTypeSelect').addEventListener('change', function() {
+            var randomSection = document.getElementById('randomTestsSection');
+            var targetedSection = document.getElementById('targetedTestsSection');
+            
+            if (this.value === 'Random') {
+                randomSection.style.display = 'block';
+                targetedSection.style.display = 'none';
+            } else {
+                randomSection.style.display = 'none';
+                targetedSection.style.display = 'block';
+            }
+        });
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('testTypeSelect').dispatchEvent(new Event('change'));
+        });
+    </script>
+}
+
+@functions {
+    private string FormatResult(double result)
+    {
+        if (double.IsNaN(result))
+            return "<span class='text-warning'>NaN</span>";
+        if (double.IsPositiveInfinity(result))
+            return "<span class='text-warning'>+∞</span>";
+        if (double.IsNegativeInfinity(result))
+            return "<span class='text-warning'>-∞</span>";
+        return result.ToString("F4");
+    }
+}

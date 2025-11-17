@@ -7,4 +7,7 @@ public class TestResult
     public double ActualResult { get; set; }
     public bool IsSuccessful { get; set; }
     public string Path { get; set; }
+    public string TestMethod { get; set; }
+    public string ReferencePath { get; set; }
+    public string FaultyPath { get; set; }
 }
